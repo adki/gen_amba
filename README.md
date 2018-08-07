@@ -79,7 +79,8 @@ There is AMBA bus generator for each bus.
 
 ### 3.1 gen_amba_axi
 It generates AMBA AXI switch.
-
+<details><summary>Click to expand</summary>
+	
 ```
 $ ./gen_amba_axi -h
 [Usage] ./gen_amba_axi [options]
@@ -92,11 +93,13 @@ $ ./gen_amba_axi -h
 	-l,--lic        print license message
 	-h              print help message
 ```
+</details><br>
 
 ![AMBA AXI switch](doc/images/axi_bus.png)
 
 ### 3.2 gen_amba_ahb
 It generates AMBA AHB bus.
+<details><summary>Click to expand</summary>
 
 ```
 $ ./gen_amba_ahb -h
@@ -111,11 +114,13 @@ $ ./gen_amba_ahb -h
 	-l,--lic        print license message
 	-h              print help message
 ```
+</details><br>
 
 ![AMBA AHB bus](doc/images/ahb_bus.png)
 
 ### 3.3 gen_amba_apb
 It generates AMBA APB bus bridge for AHB or AXI.
+<details><summary>Click to expand</summary>
 
 ```
 $ ./gen_amba_apb -h
@@ -129,6 +134,7 @@ $ ./gen_amba_apb -h
 	-l,--lic        print license message
 	-h              print help message
 ```
+</details><br>
 
 # 4. GEN_TOP
 There is top-level generator for each bus in 'verification' directory.
@@ -142,6 +148,7 @@ There is top-level generator for each bus in 'verification' directory.
       $ ./gen_axi_top.sh -mst 2 -slv 2 -siz 1024 -out top.v\
       . It generates a top-level verilog ("top.v") supporting two AXI masters and two AXI memories.\
       . Each memory takes care of 1Kbyte range of memory; i.e., memory0 covers 0-1023 and memory1 covers 1024-2047.
+<details><summary>Click to expand</summary>
 
 ```
 $ ./gen_axi_top.sh -h
@@ -153,6 +160,7 @@ Usage : ./gen_axi_top.sh [options]
       -out    file_name  :output file name, top.v
       -h/-?              :printf help
 ```
+</details><br>
 
 ![AMBA AXI top-level example](doc/images/axi_top.png)
 
@@ -165,6 +173,7 @@ Usage : ./gen_axi_top.sh [options]
       $ ./gen_ahb_top.sh -mst 2 -slv 2 -siz 1024 -out top.v\
       . It generates a top-level verilog ("top.v") supporting two AXI masters and two AXI memories.\
       . Each memory takes care of 1Kbyte range of memory; i.e., memory0 covers 0-1023 and memory1 covers 1024-2047.
+<details><summary>Click to expand</summary>
 
 ```
 $ ./gen_ahb_top.sh -h
@@ -176,6 +185,7 @@ Usage : ./gen_ahb_top.sh [options]
       -out    file_name  :output file name, top.v
       -h/-?              :printf help
 ```
+</details><br>
 
 ![AMBA AHB top-level example](doc/images/ahb_top.png)
 
@@ -188,6 +198,7 @@ Usage : ./gen_ahb_top.sh [options]
       $ ./gen_apb_top.sh -ahb -slv 2 -siz 1024 -out top.v\
       . It generates a top-level verilog ("top.v") supporting AHB masters and two APB memories.\
       . Each memory takes care of 1Kbyte range of memory; i.e., memory0 covers 0-1023 and memory1 covers 1024-2047.
+<details><summary>Click to expand</summary>
 
 ```
 $ ./gen_apb_top.sh -h
@@ -199,6 +210,7 @@ Usage : ./gen_apb_top.sh [options]
       -out    file_name  :output file name, top.v
       -h/-?              :printf help
 ```
+</details><br>
 
 ![AMBA APB top-level example](doc/images/apb_top.png)
 
