@@ -220,7 +220,7 @@ The author has been giving open lecture on AMBA bus at following two institutes.
 * SW-SoC Academy at ETRI: https://www.asic.net
 
 # 6. Where it has been used
-### <a name="con_fmc"></a>6.1 Future Design Systems (www.future-ds.com) CON-FMC<sup>TM</sup> project
+### <a name="con_fmc"></a>6.1 <a href="http://www.future-ds.com">Future Design Systems</a> <a href="http://www.future-ds.com/en/products.html#CON_FMC">CON-FMC<sup>TM</sup></a> project
 
 #### 6.1.1 Gigabit Ethernet project
 
