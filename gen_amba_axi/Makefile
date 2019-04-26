@@ -110,6 +110,7 @@ clean:
 	-rm -fr ./Debug
 	-rm -f *.stackdump
 	-rm -f compile.log
+	-rm -f *.v
 
 cleanup: clean
 	-rm -f $(TARGET) $(TARGET).exe

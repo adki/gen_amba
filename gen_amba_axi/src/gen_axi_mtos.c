@@ -1,11 +1,11 @@
 //--------------------------------------------------------
-// Copyright (c) 2016 by Ando Ki.
+// Copyright (c) 2018 by Ando Ki.
 // All right reserved.
 //
 // adki@future-ds.com
 // andoki@gmail.com
 //--------------------------------------------------------
-// VERSION: 2016.03.26.
+// VERSION: 2018.09.20.
 //--------------------------------------------------------
 // Master-to-Slave mux for AMBA AXI
 //--------------------------------------------------------
@@ -33,9 +33,15 @@ fprintf(fo, "                 , WIDTH_AD     =32 // address width\n");
 fprintf(fo, "                 , WIDTH_DA     =32 // data width\n");
 fprintf(fo, "                 , WIDTH_DS     =(WIDTH_DA/8)  // data strobe width\n");
 fprintf(fo, "                 , WIDTH_SID    =WIDTH_CID+WIDTH_ID // ID for slave\n");
+fprintf(fo, "                 `ifdef AMBA_AXI_AWUSER\n");
 fprintf(fo, "                 , WIDTH_AWUSER =1 // Write-address user path\n");
+fprintf(fo, "                 `endif\n");
+fprintf(fo, "                 `ifdef AMBA_AXI_WUSER\n");
 fprintf(fo, "                 , WIDTH_WUSER  =1 // Write-data user path\n");
+fprintf(fo, "                 `endif\n");
+fprintf(fo, "                 `ifdef AMBA_AXI_ARUSER\n");
 fprintf(fo, "                 , WIDTH_ARUSER =1 // read-address user path\n");
+fprintf(fo, "                 `endif\n");
 fprintf(fo, "                 , NUM_MASTER   =%d    // number of master\n", num);
 fprintf(fo, "                 , SLAVE_DEFAULT=1'b0  // default-salve when 1\n");
 fprintf(fo, "        )\n");
@@ -387,5 +393,6 @@ fprintf(fo, "//-----------------------------------------------------------------
 //--------------------------------------------------------
 // Revision history:
 //
+// 2018.09.20: 'WIDTH_ARUSER/WUSER/ARUSER'
 // 2016.03.26: Started by Ando Ki.
 //--------------------------------------------------------

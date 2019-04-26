@@ -37,6 +37,7 @@ for (i=0; i<num; i++) {
 fprintf(fo, "               , ADDR_PBASE%d  =32'h%08X, ADDR_PLENGTH%d=16\n", i, start, i);
 start += 0x1000;
 }
+fprintf(fo, "               , CLOCK_RATIO  =2'b00// 0=1:1, 3=async\n");
 fprintf(fo, "      )\n");
 fprintf(fo, "(\n");
 fprintf(fo, "       input  wire                     ARESETn\n");
@@ -123,7 +124,6 @@ fprintf(fo, "     , output wire [WIDTH_PDS-1:0]     S_PSTRB\n");
 fprintf(fo, "     , output wire [ 2:0]              S_PPROT\n");
 fprintf(fo, "     `endif\n");
 fprintf(fo, "     //-----------------------------------------------------------\n");
-fprintf(fo, "     , input  wire [ 1:0] CLOCK_RATIO // 0=1:1, 3=async\n");
 fprintf(fo, ");\n");
 fprintf(fo, "     //-----------------------------------------------------------\n");
 fprintf(fo, "     wire        M_PSEL   ;\n");
@@ -146,6 +146,7 @@ fprintf(fo, "                        ,.AXI_WIDTH_ID (AXI_WIDTH_ID )// ID width i
 fprintf(fo, "                        ,.AXI_WIDTH_AD (AXI_WIDTH_AD )// address width\n");
 fprintf(fo, "                        ,.AXI_WIDTH_DA (AXI_WIDTH_DA )// data width\n");
 fprintf(fo, "                        ,.APB_WIDTH_PAD(WIDTH_PAD    )// APB address width\n");
+fprintf(fo, "                        ,.CLOCK_RATIO  (CLOCK_RATIO  )\n");
 fprintf(fo, "                        )\n");
 fprintf(fo, "     u_bridge (\n");
 fprintf(fo, "            .ARESETn            (ARESETn    )\n");
@@ -220,7 +221,6 @@ fprintf(fo, "          , .M_PPROT            (M_PPROT    )\n");
 fprintf(fo, "          , .M_PSTRB            (M_PSTRB    )\n");
 fprintf(fo, "          `endif\n");
 fprintf(fo, "\n");
-fprintf(fo, "          , .CLOCK_RATIO        (CLOCK_RATIO)\n");
 fprintf(fo, "     );\n");
 fprintf(fo, "     //-----------------------------------------------------------\n");
 fprintf(fo, "     %samba_apb_s%d #(.P_NUM(%d)// num of slaves\n", prefix, num, num);

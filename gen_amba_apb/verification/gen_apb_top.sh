@@ -151,6 +151,7 @@ EOT
 echo "                  ,.P_PSEL${cnt_slv}_START(P_PSEL${cnt_slv}_START),.P_PSEL${cnt_slv}_SIZE(P_PSEL${cnt_slv}_SIZE)"
        cnt_slv=$[${cnt_slv}+1]
    done
+echo "                  ,.CLOCK_RATIO   ( 2'b0        ) // 0=1:1, 3=async"
 echo "                  )"
 echo "   u_ahb2apb ("
 echo "        .HRESETn       ( HRESETn    )"
@@ -188,7 +189,6 @@ echo "      \`ifdef AMBA_APB4"
 echo "      , .S_PPROT       ( S_PPROT    )"
 echo "      , .S_PSTRB       ( S_PSTRB    )"
 echo "      \`endif"
-echo "      , .CLOCK_RATIO   ( 2'b0       ) // 0=1:1, 3=async"
 echo "   );"
 cat << EOT
    //---------------------------------------------------------------------------
@@ -444,6 +444,7 @@ EOT
 echo "                  ,.ADDR_PBASE${cnt_slv}(ADDR_PBASE${cnt_slv}),.ADDR_PLENGTH${cnt_slv}(ADDR_PLENGTH${cnt_slv})"
        cnt_slv=$[${cnt_slv}+1]
    done
+echo "                  , .CLOCK_RATIO   ( 2'b0       ) // 0=1:1, 3=async"
 echo "                  )"
 echo "   u_axi2apb ("
 echo "       .ARESETn            (ARESETn)"
@@ -520,7 +521,6 @@ echo "      \`ifdef AMBA_APB4"
 echo "      , .S_PPROT       ( S_PPROT    )"
 echo "      , .S_PSTRB       ( S_PSTRB    )"
 echo "      \`endif"
-echo "      , .CLOCK_RATIO   ( 2'b0       ) // 0=1:1, 3=async"
 echo "   );"
 cat << EOT
    //---------------------------------------------------------------------------

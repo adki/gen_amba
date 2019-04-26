@@ -1,11 +1,11 @@
 //--------------------------------------------------------
-// Copyright (c) 2016 by Ando Ki.
+// Copyright (c) 2018 by Ando Ki.
 // All right reserved.
 //
 // adki@future-ds.com
 // andoki@gmail.com
 //--------------------------------------------------------
-// VERSION: 2016.03.26.
+// VERSION: 2018.09.20.
 //--------------------------------------------------------
 // Generate AMBA AXI
 //--------------------------------------------------------
@@ -57,11 +57,21 @@ fprintf(fo, "                , WIDTH_AD    =32 // address width\n");
 fprintf(fo, "                , WIDTH_DA    =32 // data width\n");
 fprintf(fo, "                , WIDTH_DS    =(WIDTH_DA/8)  // data strobe width\n");
 fprintf(fo, "                , WIDTH_SID   =(WIDTH_CID+WIDTH_ID)// ID for slave\n");
+fprintf(fo, "                `ifdef AMBA_AXI_AWUSER\n");
 fprintf(fo, "                , WIDTH_AWUSER= 1 // Write-address user path\n");
+fprintf(fo, "                `endif\n");
+fprintf(fo, "                `ifdef AMBA_AXI_WUSER\n");
 fprintf(fo, "                , WIDTH_WUSER = 1 // Write-data user path\n");
+fprintf(fo, "                `endif\n");
+fprintf(fo, "                `ifdef AMBA_AXI_BUSER\n");
 fprintf(fo, "                , WIDTH_BUSER = 1 // Write-response user path\n");
+fprintf(fo, "                `endif\n");
+fprintf(fo, "                `ifdef AMBA_AXI_ARUSER\n");
 fprintf(fo, "                , WIDTH_ARUSER= 1 // read-address user path\n");
+fprintf(fo, "                `endif\n");
+fprintf(fo, "                `ifdef AMBA_AXI_RUSER\n");
 fprintf(fo, "                , WIDTH_RUSER = 1 // read-data user path\n");
+fprintf(fo, "                `endif\n");
 for (i=0; i<numS; i++) {
 fprintf(fo, "                , SLAVE_EN%d   = 1 , ADDR_BASE%d  =32'h%08X , ADDR_LENGTH%d=12 // effective addre bits\n", i, i, start, i);
 start += 0x2000;
@@ -184,9 +194,15 @@ fprintf(fo, "                  ,.WIDTH_AD    (WIDTH_AD    )\n");
 fprintf(fo, "                  ,.WIDTH_DA    (WIDTH_DA    )\n");
 fprintf(fo, "                  ,.WIDTH_DS    (WIDTH_DS    )\n");
 fprintf(fo, "                  ,.WIDTH_SID   (WIDTH_SID   )\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_AWUSER\n");
 fprintf(fo, "                  ,.WIDTH_AWUSER(WIDTH_AWUSER)\n");
+fprintf(fo, "                  `endif\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_WUSER\n");
 fprintf(fo, "                  ,.WIDTH_WUSER (WIDTH_WUSER )\n");
+fprintf(fo, "                  `endif\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_ARUSER\n");
 fprintf(fo, "                  ,.WIDTH_ARUSER(WIDTH_ARUSER)\n");
+fprintf(fo, "                  `endif\n");
 fprintf(fo, "                  ,.SLAVE_DEFAULT(1'b0)\n");
 fprintf(fo, "                 )\n");
 fprintf(fo, "     u_axi_mtos_s%d (\n", i);
@@ -222,9 +238,15 @@ fprintf(fo, "                  ,.WIDTH_AD    (WIDTH_AD    )\n");
 fprintf(fo, "                  ,.WIDTH_DA    (WIDTH_DA    )\n");
 fprintf(fo, "                  ,.WIDTH_DS    (WIDTH_DS    )\n");
 fprintf(fo, "                  ,.WIDTH_SID   (WIDTH_SID   )\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_AWUSER\n");
 fprintf(fo, "                  ,.WIDTH_AWUSER(WIDTH_AWUSER)\n");
+fprintf(fo, "                  `endif\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_WUSER\n");
 fprintf(fo, "                  ,.WIDTH_WUSER (WIDTH_WUSER )\n");
+fprintf(fo, "                  `endif\n");
+fprintf(fo, "                  `ifdef AMBA_AXI_ARUSER\n");
 fprintf(fo, "                  ,.WIDTH_ARUSER(WIDTH_ARUSER)\n");
+fprintf(fo, "                  `endif\n");
 fprintf(fo, "                  ,.SLAVE_DEFAULT(1'b1)\n");
 fprintf(fo, "                 )\n");
 fprintf(fo, "     u_axi_mtos_sd (\n");
@@ -255,8 +277,12 @@ fprintf(fo, "                  ,.WIDTH_AD    (WIDTH_AD    )\n");
 fprintf(fo, "                  ,.WIDTH_DA    (WIDTH_DA    )\n");
 fprintf(fo, "                  ,.WIDTH_DS    (WIDTH_DS    )\n");
 fprintf(fo, "                  ,.WIDTH_SID   (WIDTH_SID   )\n");
+fprintf(fo, "                `ifdef AMBA_AXI_BUSER\n");
 fprintf(fo, "                  ,.WIDTH_BUSER (WIDTH_BUSER)\n");
+fprintf(fo, "                `endif\n");
+fprintf(fo, "                `ifdef AMBA_AXI_RUSER\n");
 fprintf(fo, "                  ,.WIDTH_RUSER (WIDTH_RUSER )\n");
+fprintf(fo, "                `endif\n");
 fprintf(fo, "                 )\n");
 fprintf(fo, "     u_axi_stom_m%d (\n", i);
 fprintf(fo, "           .ARESETn              (ARESETn     )\n");
@@ -392,6 +418,7 @@ fprintf(fo, "endmodule\n");
 //--------------------------------------------------------
 // Revision history:
 //
+// 2018.09.20: 'WIDTH_??USER' with 'ifdef
 // 2017.09.19: fprintf(fo, "     %saxi_stom_s%d #(.MASTER_ID(%d)\n", prefix, numS, i);
 // 2016.03.26: Started by Ando Ki.
 //--------------------------------------------------------

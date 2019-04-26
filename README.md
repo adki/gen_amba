@@ -227,5 +227,5 @@ The author has been giving open lecture on AMBA bus at following two institutes.
 ### Autor(s)
 * **[Ando Ki](andoki@gmail.com)** - *Initial work* - [Future Design Systems](http://www.future-ds.com)
 
-### Acknoledgments
+### Acknowledgments
 

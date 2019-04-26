@@ -14,7 +14,8 @@
 #include <stdarg.h>
 
 static char *code[] = {
- "("
+ "     #(parameter CLOCK_RATIO=2'b00) // 0=1:1, 3=async"
+,"("
 ,"       input  wire        HRESETn"
 ,"     , input  wire        HCLK"
 ,"     , input  wire        HSEL"
@@ -46,7 +47,6 @@ static char *code[] = {
 ,"     , output wire [ 2:0] M_PPROT"
 ,"     , output wire [ 3:0] M_PSTRB"
 ,"     `endif"
-,"     , input  wire [ 1:0] CLOCK_RATIO // 0=1:1, 3=async"
 ,");"
 ,"   //-----------------------------------------------------"
 ,"   `ifndef AMBA_APB3"

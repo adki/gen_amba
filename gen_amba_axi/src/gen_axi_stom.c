@@ -1,11 +1,11 @@
 //--------------------------------------------------------
-// Copyright (c) 2016 by Ando Ki.
+// Copyright (c) 2018 by Ando Ki.
 // All right reserved.
 //
 // adki@future-ds.com
 // andoki@gmail.com
 //--------------------------------------------------------
-// VERSION: 2016.03.26.
+// VERSION: 2018.09.20.
 //--------------------------------------------------------
 // Slave-to-Master mux for AMBA AXI
 //--------------------------------------------------------
@@ -30,8 +30,12 @@ fprintf(fo, "                 , WIDTH_AD    =32 // address width\n");
 fprintf(fo, "                 , WIDTH_DA    =32 // data width\n");
 fprintf(fo, "                 , WIDTH_DS    =(WIDTH_DA/8)  // data strobe width\n");
 fprintf(fo, "                 , WIDTH_SID   =WIDTH_CID+WIDTH_ID // ID for slave\n");
+fprintf(fo, "                 `ifdef AMBA_AXI_BUSER\n");
 fprintf(fo, "                 , WIDTH_BUSER = 1 // Write-response user path\n");
+fprintf(fo, "                 `endif\n");
+fprintf(fo, "                 `ifdef AMBA_AXI_RUSER\n");
 fprintf(fo, "                 , WIDTH_RUSER = 1 // read-data user path\n");
+fprintf(fo, "                 `endif\n");
 fprintf(fo, "        )\n");
 fprintf(fo, "(\n");
 fprintf(fo, "       input   wire                      ARESETn\n");
@@ -217,5 +221,6 @@ fprintf(fo, "//-----------------------------------------------------------------
 //--------------------------------------------------------
 // Revision history:
 //
+// 2018.09.20: 'WIDTH_BUSER/RUSER'
 // 2016.03.26: Started by Ando Ki.
 //--------------------------------------------------------
